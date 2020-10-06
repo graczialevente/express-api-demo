@@ -1,5 +1,10 @@
 import express from 'express';
 import Joi from 'joi';
+import dotenv from 'dotenv';
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
 
 const app = express();
 
@@ -44,5 +49,5 @@ app.post('/post', (req, res) => {
   res.send('OK');
 });
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port: ${port}]`));
