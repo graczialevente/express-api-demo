@@ -1,0 +1,38 @@
+{
+  "name": "express-api-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "dev": "nodemon",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Graczia Levente",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^17.2.1"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/express": "^4.17.8",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
