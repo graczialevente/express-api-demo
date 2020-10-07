@@ -21,10 +21,16 @@ app.get('/', (req, res) => {
  * Validate get parameter
  */
 app.get('/post/:postId', (req, res) => {
-  const postId = parseInt(req.params.postId, 10);
+  const { postId } = req.params;
 
-  if (isNaN(postId)) {
-    res.status(400).send('Not valid parameter.');
+  const params = Joi.object({
+    postId: Joi.number().integer().required(),
+  });
+
+  const { error } = params.validate(req.params);
+
+  if (error) {
+    res.status(400).send(error.details[0].message);
     return;
   }
 
@@ -50,4 +56,4 @@ app.post('/post', (req, res) => {
 });
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`Listening on port: ${port}]`));
+app.listen(port, () => console.log(`Listening on port: ${port}`));
