@@ -23,18 +23,20 @@ app.get('/', (req, res) => {
 app.get('/post/:postId', (req, res) => {
   const { postId } = req.params;
 
+  const idPattern = /^[1-9]([0-9]+)?$/;
+
   const params = Joi.object({
-    postId: Joi.number().integer().required(),
+    postId: Joi.string().regex(idPattern).required(),
   });
 
   const { error } = params.validate(req.params);
 
   if (error) {
-    res.status(400).send(error.details[0].message);
+    res.status(400).send(`"${error.details[0].path}" not valid param`);
     return;
   }
 
-  res.send({ postId });
+  res.send({ postId: parseInt(postId) });
 });
 
 /**
